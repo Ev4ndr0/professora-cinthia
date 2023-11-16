@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  base: "/professora-cinthia",
   optimizeDeps: {
     exclude: ['@ffmpeg/ffmpeg','@ffmpeg/util']
   },

@@ -1,4 +1,4 @@
-import { Github, Wand2 } from 'lucide-react';
+import { Eraser, Github, Wand2 } from 'lucide-react';
 import { useState } from "react";
 import { Button } from "./components/ui/button";
 import { Input } from './components/ui/input';
@@ -27,8 +27,16 @@ export function App() {
     let $nr_x = qtdCriancas * nrDiasLetivos;
     let $nr_z = $nr_x - qtdTotalFaltas;
 
-    setFrequenciaMedia(Math.ceil(($nr_z / nrDiasLetivos * 100) / qtdCriancas));
+    if ($nr_x && $nr_z)
+      setFrequenciaMedia(Math.ceil(($nr_z / nrDiasLetivos * 100) / qtdCriancas));
 
+  }
+
+  function clearValues() {
+    setQtdCriancas(0);
+    setNrDiasLetivos(0);
+    setQtdTotalFaltas(0);
+    setFrequenciaMedia(0);
   }
 
   return (
@@ -59,25 +67,29 @@ export function App() {
                   <div className="space-y-1">
                     <Label>Quantidade de crianças</Label>
                     <Input type="number" id="qtd_criancas" placeholder="Quantidade de crianças"
-                      onChange={handleCriancas} min={1} max={40} />
+                      onChange={handleCriancas} value={qtdCriancas} min={1} max={40} />
                   </div>
                   <Separator />
                   <div className="space-y-1">
-                    <Label>Quantidade de Dias Letivos</Label>
+                    <Label>Quantidade de dias letivos do mês</Label>
                     <Input type="number" id="nr_dias_letivos" placeholder="Quantidade de Dias Letivos"
-                      onChange={handleDias} min={1} max={40} />
+                      onChange={handleDias} value={nrDiasLetivos} min={1} max={40} />
                   </div>
                   <Separator />
                   <div className="space-y-1">
-                    <Label>Quantidade total de faltas</Label>
+                    <Label>Quantidade total de faltas no mês</Label>
                     <Input type="number" id="qtd_total_faltas" placeholder="Quantidade total de faltas"
-                      onChange={handleFaltas} min={1} max={365} />
+                      onChange={handleFaltas} value={qtdTotalFaltas} min={1} max={365} />
                   </div>
                 </div>
                 <div className="space-y-1">
-                  <Button onClick={handleCalculoFrequencia} type="button" className="w-100">
+                  <Button onClick={handleCalculoFrequencia} type="button" className="w-100 text-white bg-sky-500/100 ">
                     Calcular
                     <Wand2 className="w-4 h-4 ml-2" />
+                  </Button>
+                  <Button onClick={clearValues} type="button" className="w-100 m-3">
+                    Limpar
+                    <Eraser className="w-4 h-4 ml-4" />
                   </Button>
                 </div>
               </div>
@@ -92,8 +104,8 @@ export function App() {
             </h1>
           </div>
         </aside>
-        <div className="w-30 h-4 mr-2" >
-          <img src={logo} alt='professoa'/>
+        <div className="w-25 h-4 mr-2" >
+          <img src={logo} alt='professoa' />
         </div>
       </main>
     </div>
