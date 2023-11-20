@@ -62,7 +62,7 @@ export function App() {
         <aside className="w-full space-y-2">
           <form className="space-y-6">
             <div className="flex flex-col flex-1 gap-4">
-              <div className="grid grid-rows-4 gap-4 flex-1">
+              <div className="grid grid-rows-6 gap-6 flex-1">
                 <div className="grid w-full max-w-sm items-center gap-2">
                   <div className="space-y-1">
                     <Label>Quantidade de crianças</Label>
@@ -81,16 +81,21 @@ export function App() {
                     <Input type="number" id="qtd_total_faltas" placeholder="Quantidade total de faltas"
                       onChange={handleFaltas} value={qtdTotalFaltas} min={1} max={365} />
                   </div>
-                </div>
-                <div className="space-y-1">
-                  <Button onClick={handleCalculoFrequencia} type="button" className="w-100 text-white bg-sky-500/100 ">
-                    Calcular
-                    <Wand2 className="w-4 h-4 ml-2" />
-                  </Button>
-                  <Button onClick={clearValues} type="button" className="w-100 m-3">
-                    Limpar
-                    <Eraser className="w-4 h-4 ml-4" />
-                  </Button>
+                  <div className="space-y-1">
+                    <h1 className="text-xl font-bold">
+                      A Frequência Média da Classe é <span className='text-blue-700'>{frequenciaMedia} </span>%
+                    </h1>
+                  </div>
+                  <div className="space-y-1">
+                    <Button onClick={handleCalculoFrequencia} type="button" className="w-100 text-white bg-sky-500/100 ">
+                      Calcular
+                      <Wand2 className="w-4 h-4 ml-2" />
+                    </Button>
+                    <Button onClick={clearValues} type="button" className="w-100 m-3">
+                      Limpar
+                      <Eraser className="w-4 h-4 ml-4" />
+                    </Button>
+                  </div>
                 </div>
               </div>
 
@@ -98,15 +103,10 @@ export function App() {
           </form>
         </aside>
         <aside className="w-full space-y-2">
-          <div className="space-y-2">
-            <h1 className="text-xl font-bold">
-              A Frequência Média da Classe é <span className='text-blue-700'>{frequenciaMedia} </span>%
-            </h1>
+          <div className="w-32 h-15 mr-2" >
+            <img src={logo} alt='professoa' />
           </div>
         </aside>
-        <div className="w-25 h-4 mr-2" >
-          <img src={logo} alt='professoa' />
-        </div>
       </main>
     </div>
   )
