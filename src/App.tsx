@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Tooltip,
   TooltipContent,
@@ -15,12 +16,15 @@ import {
   Wand2
 } from 'lucide-react';
 import Link from "next/link";
+=======
+import { Eraser, Github, Wand2 } from 'lucide-react';
+>>>>>>> 43676f568c4904c02e530cb98b490a68a8028e6a
 import { useState } from "react";
 import { Button } from "./components/ui/button";
 import { Input } from './components/ui/input';
 import { Label } from "./components/ui/label";
 import { Separator } from "./components/ui/separator";
-import logo from './public/professora_mo.png';
+import logo from '/public/professora_mo.png';
 
 export function App() {
   const [qtdCriancas, setQtdCriancas] = useState(0)
@@ -43,8 +47,16 @@ export function App() {
     let $nr_x = qtdCriancas * nrDiasLetivos;
     let $nr_z = $nr_x - qtdTotalFaltas;
 
-    setFrequenciaMedia(Math.ceil(($nr_z / nrDiasLetivos * 100) / qtdCriancas));
+    if ($nr_x && $nr_z)
+      setFrequenciaMedia(Math.ceil(($nr_z / nrDiasLetivos * 100) / qtdCriancas));
 
+  }
+
+  function clearValues() {
+    setQtdCriancas(0);
+    setNrDiasLetivos(0);
+    setQtdTotalFaltas(0);
+    setFrequenciaMedia(0);
   }
 
   return (
